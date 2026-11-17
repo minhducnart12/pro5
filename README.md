@@ -6,7 +6,7 @@
 
 Yêu cầu Node.js 22 trở lên.
 
-1. Tạo một dự án Supabase dành riêng cho JORGER Quotation. Mở SQL Editor và chạy `supabase/migrations/001_catalog_and_orders.sql` một lần.
+1. Tạo một dự án Supabase dành riêng cho JORGER Quotation. Mở SQL Editor và chạy các migration trong `supabase/migrations/` theo thứ tự. Migration `002_jorger_catalog.sql` thêm 581 mã và biến thể từ năm bảng giá. Nếu cơ sở dữ liệu đã có cấu trúc của bản trước, chỉ chạy migration 002.
 2. Sao chép `.env.example` thành `.env.local`. Điền URL dự án và publishable key. Giữ các khóa đặc quyền ngoài ứng dụng.
 3. Trong Supabase Authentication, tạo người dùng quản trị, xác nhận email và lấy UID. Cấp quyền bằng lệnh sau trong SQL Editor.
 
@@ -15,10 +15,11 @@ Yêu cầu Node.js 22 trở lên.
    ```
 
 4. Chạy `npm ci` và `npm run dev`. Mở `http://localhost:3000` hoặc `http://localhost:3000/admin`.
-5. Thêm danh mục thật ở Admin. Để thử luồng mua trong cơ sở dữ liệu phát triển, chạy thêm `supabase/seed.sql`. Các mã bắt đầu bằng DEMO là dữ liệu kiểm thử. Chỉ dùng bảng giá đã duyệt trên môi trường phục vụ khách.
+5. Mở Admin để kiểm tra và cập nhật danh mục. File `supabase/seed.sql` chứa các mã DEMO của bản thử trước và có thể bỏ qua khi đã nhập danh mục thật.
 
 ## Vận hành
 
+- Mã bộ cấu hình trong BOM dùng tiền tố `BOM-`. Bộ khóa Fluorocarbon dùng mã bộ ghép với mã lõi. Màu được ghi trong yêu cầu khi đặt bộ khóa Fluorocarbon. Tên từng tài liệu nguồn được lưu trong mô tả.
 - Mỗi SKU đại diện cho một mã lẻ hoặc một biến thể bộ cửa theo hệ nhôm, loại cửa và màu. Khai báo các biến thể thành từng SKU để mỗi biến thể có giá riêng.
 - Trường đường dẫn ảnh nhận URL HTTPS, ví dụ URL ảnh công khai từ Supabase Storage. Các đường dẫn `/products/…` trỏ đến tệp trong `public/products`.
 - Tắt “Hiển thị cho khách” để ẩn sản phẩm. Đơn đã gửi lưu bản chụp tên, mã và đơn giá tại thời điểm tạo.
